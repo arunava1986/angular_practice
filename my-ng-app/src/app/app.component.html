@@ -1,0 +1,43 @@
+<h1>The First Angular Component</h1>
+<div>{{message}}</div>
+<br>
+<div>{{100+300}}</div>
+<input type="text" [value]="message">
+<br>
+<a [href]="url">DNC</a>
+<br>
+<input type="button" (click)="display()" value="Click Me">
+<hr>
+<input type="text" [(ngModel)]="name">
+<br>
+<input type="text" [(ngModel)]="name">
+<br>
+<input type="text" [(ngModel)]="name">
+<br>
+<select [(ngModel)]="selectedCharacter">
+  <option *ngFor="let c of characters" value="{{c}}">{{c}}</option>
+</select>
+<br>
+<div>
+  <strong>
+    selected Character : {{selectedCharacter}}
+  </strong>
+</div>
+<br>
+<select [(ngModel)]="seletDept"  >
+  <option *ngFor="let d of departments" value="{{d.DeptNo}}">{{d.DeptName}}</option>
+</select>
+<br>
+<div>
+  {{seletDept}}
+</div>
+<hr>
+<input type="button" value="Toggle" (click)="setToggle()">
+<br>
+<div *ngIf="toggle">
+  <strong>Value will shown when toggle is true</strong>
+</div>
+<hr>
+<div [hidden]="!toggle">
+  <strong>Value will shown  when toggle is true</strong>
+</div>

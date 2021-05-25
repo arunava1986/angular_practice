@@ -1,0 +1,29 @@
+<div class="container">
+    <h1>The Http Calls using Angular @angular/common/http</h1>
+    <input type="button" value="Get" class="btn btn-primary" (click)="loadData()">
+    <hr>
+    <input type="button" value="Post" class="btn btn-success" (click)="saveData()">
+    <hr>
+    <div class="container">
+        <strong>
+            {{products | json}}
+        </strong>
+    </div>
+</div>
+<hr>
+
+
+<div class="container">
+    <h1>The Secure Call to REST APIs</h1>
+    <input type="button" value="Register New User" class="btn btn-primary" (click)="registerNewUser()">
+    <hr>
+    <input type="button" value="Auth User" class="btn btn-success" (click)="authUser()">
+    <hr>
+    <input type="button" value="Get Data" class="btn btn-warning" (click)="getData()">
+    <hr>
+    <div class="container">
+        <strong>
+             {{response | json}}
+        </strong>
+    </div>
+</div>

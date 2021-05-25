@@ -1,0 +1,89 @@
+<h2>The Product Component</h2>
+<table class="table table-bordered table-striped">
+    <tbody>
+        <tr>
+            <td>
+                <div class="container">
+                    <div class="form-group">
+                        <label>Product Row Id</label>
+                        <input type="text" class="form-control" [(ngModel)]="product.ProductRowId">
+                    </div>
+                    <div class="form-group">
+                        <label>Product Id</label>
+                        <input type="text" class="form-control" [(ngModel)]="product.ProductId">
+                    </div>
+                    <div class="form-group">
+                        <label>Product Name</label>
+                        <input type="text" class="form-control" [(ngModel)]="product.ProductName">
+                    </div>
+                    <div class="form-group">
+                        <label>Category Name</label>
+                        <!-- <select class="form-control" [(ngModel)]="product.CategoryName">
+                            <option *ngFor="let cat of categories" value="{{cat}}">{{cat}}</option>
+                        </select> -->
+                        <app-dropdown-component [DataSource]="categories"
+                         (notify)="getCatName($event)"
+                    ></app-dropdown-component>
+                    </div>
+                    <div class="form-group">
+                        <label>Manufacturer</label>
+                        <!-- <select class="form-control" [(ngModel)]="product.Manufacturer">
+                            <option *ngFor="let man of manufacturers" value="{{man}}">{{man}}</option>
+                        </select> -->
+                        <app-dropdown-component [DataSource]="manufacturers"
+                        (notify)="getManName($event)"
+                      ></app-dropdown-component>
+                    </div>
+                    <div class="form-group">
+                        <label>Description</label>
+                        <input type="text" class="form-control" [(ngModel)]="product.Description">
+                    </div>
+                    <div class="form-group">
+                        <label>Base Price</label>
+                        <input type="text" class="form-control" [(ngModel)]="product.BasePrice">
+                    </div>
+                    <div class="form-group">
+                       <input type="button" value="Clear" (click)="clear()" class="btn btn-primary">
+                       <input type="button" value="Save" (click)="save()" class="btn btn-success">
+                    </div>
+                </div>
+            </td>
+            <td>
+                <!--Herd coded values-->
+               <!-- <table class="table table-bordered table-striped">
+                   <thead>
+                       <tr>
+                           <th>Product Row Id</th>
+                           <th>Product  Id</th>
+                           <th>Product Name</th>
+                           <th>Category Name</th>
+                           <th>Manufacturer</th>
+                           <th>Description</th>
+                           <th>Base Price</th>
+                       </tr>
+                   </thead>
+                   <tbody>
+                       <tr *ngFor="let prd of products">
+                           <td>{{prd.ProductRowId}}</td>
+                           <td>{{prd.ProductId}}</td>
+                           <td>{{prd.ProductName}}</td>
+                           
+                       </tr> 
+                   </tbody>
+               </table> -->
+               <table class="table table-bordered table-striped">
+                   <thead>
+                       <tr>
+                           <th *ngFor="let header of columnHeaders">{{header}}</th>
+                       </tr>
+                   </thead>
+                   <tbody>
+                       <tr *ngFor="let prd of products" (click)="getSelectedProduct(prd)">
+                           <td *ngFor="let header of columnHeaders">{{prd[header]}}</td>
+                       </tr>
+                   </tbody>
+               </table>
+            </td>
+        </tr>
+    </tbody>
+</table>

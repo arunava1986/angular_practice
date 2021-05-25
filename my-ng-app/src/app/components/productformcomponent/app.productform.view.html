@@ -1,0 +1,95 @@
+<h2>The Product Reactive Form Component</h2>
+<table class="table table-bordered table-striped">
+    <tbody>
+        <tr>
+            <td>
+            <form [formGroup]="frmProduct" (ngSubmit)="save()">
+                <div class="container">
+                    <div class="form-group">
+                        <label>Product Row Id</label>
+                        <input type="text" class="form-control" 
+                         formControlName="ProductRowId"
+                        >
+                        <!--Eveluate the validations-->
+                        <div class="alert alert-danger"
+                         *ngIf="frmProduct.controls.ProductRowId.dirty&&!frmProduct.controls.ProductRowId.valid">
+                            <p *ngIf="frmProduct.controls.ProductRowId.errors?.required">Value is Mandatory</p>
+                            <p *ngIf="frmProduct.controls.ProductRowId.errors?.minlength">Value must be 2 digits in Length</p>
+                            <p *ngIf="frmProduct.controls.ProductRowId.errors?.maxlength">Value is can be max 8 digits</p>
+                            <p *ngIf="frmProduct.controls.ProductRowId.errors?.pattern">Value must be numeric</p>
+                            <!--The Custom Validator-->
+                            <p *ngIf="!frmProduct.controls.ProductRowId.errors?.even">Value must be Even Number</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Product Id</label>
+                        <input type="text" class="form-control" formControlName="ProductId">
+                    </div>
+                    <div class="form-group">
+                        <label>Product Name</label>
+                        <input type="text" class="form-control" formControlName="ProductName">
+                    </div>
+                    <div class="form-group">
+                        <label>Category Name</label>
+                        <select class="form-control" formControlName="CategoryName">
+                            <option *ngFor="let cat of categories" value="{{cat}}">{{cat}}</option>
+                        </select>
+                       
+                    </div>
+                    <div class="form-group">
+                        <label>Manufacturer</label>
+                        <select class="form-control" formControlName="Manufacturer">
+                            <option *ngFor="let man of manufacturers" value="{{man}}">{{man}}</option>
+                        </select>
+                        
+                    </div>
+                    <div class="form-group">
+                        <label>Description</label>
+                        <input type="text" class="form-control" formControlName="Description">
+                    </div>
+                    <div class="form-group">
+                        <label>Base Price</label>
+                        <input type="text" class="form-control" formControlName="BasePrice">
+                    </div>
+                    <div class="form-group">
+                       <input type="button" value="Clear" (click)="clear()" class="btn btn-primary">
+                       <input type="submit" value="Save" class="btn btn-success"
+                        [disabled]="!frmProduct.valid">
+                    </div>
+                </div>
+            </form>
+            </td>
+            <td>
+                <table class="table table-bordered table-striped">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <input type="radio" name="r" value='red' (click)="color='red'"> RED
+                            </td>
+                            <td>
+                                <input type="radio" name="r" value='yellow' (click)="color='yellow'"> YELLOW
+                            </td>
+                            <td>
+                                <input type="radio" name="r" value='blue' (click)="color='blue'"> BLUE
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>  
+                <br>
+               <table class="table table-bordered table-striped">
+                   <thead>
+                       <tr>
+                           <th *ngFor="let header of columnHeaders">{{header}}</th>
+                       </tr>
+                   </thead>
+                   <tbody>
+                       <tr *ngFor="let prd of products" (click)="getSelectedProduct(prd)"
+                        [setColor]="color">
+                           <td *ngFor="let header of columnHeaders">{{prd[header]}}</td>
+                       </tr>
+                   </tbody>
+               </table>
+            </td>
+        </tr>
+    </tbody>
+</table>
